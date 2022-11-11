@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "axios": "^1.1.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "handlebars": "^4.7.7",
+    "multer": "^1.4.5-lts.1",
+    "request": "^2.88.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "entregable-4",
+  "description": "",
+  "version": "1.0.0",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgustinGiaccone/entregable-4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AgustinGiaccone/entregable-4/issues"
+  },
+  "homepage": "https://github.com/AgustinGiaccone/entregable-4#readme"
+}

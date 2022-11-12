@@ -5,6 +5,26 @@ const port = process.env.PORT || 8070
 const routerProductos = express.Router()
 const axios = require ('axios')
 
+const { Server: HttpServer } = require('http');
+const { Server: IOServer } = require('socket.io');
+
+const httpServer = new HttpServer(app);
+const io = new IOServer(httpServer);
+
+const mensajes = []
+
+app.use(express.static(__dirname + '/views'));
+
+io.on('connection', socket => {
+console.log('Nuevo cliente conectado!');
+socket.emit('mensajes', mensajes);
+
+socket.on('new-message', data => {
+    mensajes.push(data);
+    io.sockets.emit('mensajes', mensajes);
+})
+});
+
 routerProductos.use(express.urlencoded({extended:true}))
 routerProductos.use(express.json())
 
@@ -21,19 +41,21 @@ routerProductos.use('/:userId',itemRouter)
 
 app.use(express.urlencoded({extended:true}))
 
-const servidor = app.listen(port, () => {
+const servidor = httpServer.listen(port, () => {
     console.log(`servidor en el http://localhost:${port}`)
 })
+
+
 
 app.get('/', async (req, res) => {
     const automovil = await vehiculos.getAll()
     res.render('inicio-formulario.ejs', {automovil})
 })
 
-app.get('/productos', async (req, res) => {
-    const automovil = await vehiculos.getAll()
-    res.render('inicio-historial.ejs', {automovil})
-})
+// app.get('/productos', async (req, res) => {
+//     const automovil = await vehiculos.getAll()
+//     res.render('inicio-formulario.ejs', {automovil})
+// })
 
 app.post('/productos', async (req, res) => {
     const {body}= req

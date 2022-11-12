@@ -1,12 +1,14 @@
 const socket = io.connect();
 
 function addMessage() {
-    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
     const mensaje = document.getElementById('mensaje').value;
+    const fecha = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
 
     const nuevoMensaje = {
-    nombre: nombre,
-    mensaje: mensaje
+    email: email,
+    mensaje: mensaje,
+    fecha: fecha
 };
 
     socket.emit('new-message', nuevoMensaje);
@@ -17,7 +19,8 @@ function render(data) {
 const html = data.map((elem, index) => {
     return (`
     <div>
-        <strong>${elem.nombre}</strong>:
+        <strong>${elem.email}</strong>:
+        <i>${elem.fecha}</i>
         <i>${elem.mensaje}</i>
     </div>
     `);

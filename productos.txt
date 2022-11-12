@@ -16,23 +16,5 @@
     "title": "Volkswagen Amarok",
     "price": 10000000,
     "thumbnail": "https://i.postimg.cc/jd6ST12r/amarokv6.jpg"
-  },
-  {
-    "id": 4,
-    "title": "raptor",
-    "price": "5000000000",
-    "Thumbnail": "pruebas.png"
-  },
-  {
-    "id": 5,
-    "title": "ford ranger",
-    "price": "9000000",
-    "thumbnail": "https://i.postimg.cc/0j2pL0NK/ranger.jpg"
-  },
-  {
-    "id": 6,
-    "title": "1",
-    "price": "1",
-    "thumbnail": "1"
   }
 ]

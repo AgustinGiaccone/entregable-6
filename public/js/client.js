@@ -16,6 +16,8 @@ function addMessage() {
 }
 
 function render(data) {
+    console.log(data);
+    console.log('test-client')
 const html = data.map((elem, index) => {
     return (`
     <div>

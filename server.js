@@ -1,6 +1,7 @@
 const express = require('express')
 const Contenedor = require('./Contenedor.js')
 const app = express()
+const fs= require('fs');
 const port = process.env.PORT || 8070
 const routerProductos = express.Router()
 const axios = require ('axios')
@@ -10,8 +11,12 @@ const { Server: IOServer } = require('socket.io');
 
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
+const chats = new Contenedor('chats.json')
+// var mensajes = chats.getAll()
+chatsFile = './chats.json'
+var mensajes = JSON.parse(fs.readFileSync(chatsFile, 'utf8'))
 
-const mensajes = []
+console.log(mensajes)
 
 app.use(express.static('public'));
 // app.use(express.static(__dirname + '/views'));
@@ -22,6 +27,8 @@ socket.emit('mensajes', mensajes);
 
 socket.on('new-message', data => {
     mensajes.push(data);
+    console.log(data);
+    console.log('test-server')
     io.sockets.emit('mensajes', mensajes);
 })
 });

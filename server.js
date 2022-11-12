@@ -13,7 +13,8 @@ const io = new IOServer(httpServer);
 
 const mensajes = []
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static('public'));
+// app.use(express.static(__dirname + '/views'));
 
 io.on('connection', socket => {
 console.log('Nuevo cliente conectado!');
@@ -32,7 +33,7 @@ const itemRouter = express.Router({mergeParams: true})
 const vehiculos = new Contenedor('productos.txt')
 const notFound = { error: "Producto no encontrado" };
 
-app.set('views', __dirname+ '/views')
+app.set('views', __dirname+ '/public/views')
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 

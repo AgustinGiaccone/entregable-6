@@ -1,6 +1,4 @@
     <h2 style="color:crimson;">Historial</h2>
-
-    <% if(automovil.length > 0) { %>
     <div class="table-responsive">
         <table class="table table-dark">
         <tr style="color: yellow;">
@@ -9,7 +7,7 @@
             <th>price</th>
             <th>thumbnail</th>
         </tr>
-        <% for (const vehiculo of automovil) {%>
+        <% for (const vehiculo of vehiculos) {%>
         <tr>
             <td><%=vehiculo.id%></td>
             <td><%=vehiculo.title%></td>
@@ -19,9 +17,3 @@
         <%};%>
         </table>
     </div>
-    <%}else{%>
-    <h3 class="alert alert-danger">No se encontraron vehiculos</h3>
-    <%};%>
-    <!-- <form action="/" method="get">
-    <button>volver</button>
-    </form> -->

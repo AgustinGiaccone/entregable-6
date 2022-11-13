@@ -1,4 +1,4 @@
-const socket = io.connect();
+const socketHistorial = socketProductos.connect();
 
 function addMessage() {
     const id = document.getElementById('id ').value;
@@ -13,27 +13,28 @@ function addMessage() {
     thumbnail: thumbnail
 };
 
-    socket.emit('new-message', nuevoMensaje);
+    socketHistorial.emit('new-message', nuevoMensaje);
     return false;
 }
 
-function render(data) {
-    console.log(data);
-    console.log('test-client')
-const html = data.map((elem, index) => {
-    return (`
-    <div>
-        <strong>${elem.id}</strong>:
-        <i>${elem.title}</i>
-        <i>${elem.price}</i>
-        <i>${elem.price}</i>
-    </div>
-    `);
-}).join(' ');
-
-document.getElementById('messages').innerHTML = html;
+function Get(url){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",url,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;
 }
 
+function render(data) {
+    var stemplate = document.getElementById('template').innerHTML
+    var tmpl = Handlebars.compile(stemplate);
+    var ctx = {};
+    // const productosUrl = 'http://localhost:8070/api/productos'
+    // ctx.productos = JSON.parse(Get(productosUrl));
+    ctx.productos = JSON.parse(data)
+    html = tmpl(ctx)
+
+document.getElementById('template').innerHTML = html;
+}
 socket.on('mensajes', function(data) {
-render(data);
-});
+    render(data);
+    });

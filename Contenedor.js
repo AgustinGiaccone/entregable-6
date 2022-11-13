@@ -11,7 +11,7 @@ class Contenedor{
     try {
         //generar el archivo
         if(fs.existsSync(this.archivo)){
-          let productos= await this.getAll();
+          let productos= this.getAll;
           if( productos.length>0){
             let lastiId=productos[productos.length-1].id+1
           let newProduct={
@@ -47,10 +47,10 @@ class Contenedor{
         console.log(error)
       }
   }
-    getAll=async()=>{
+  get getAll(){
       try {
           if(fs.existsSync(this.archivo)){
-          let info= await fs.promises.readFile(this.archivo, 'utf8');
+          let info= fs.readFileSync(this.archivo, 'utf8');
           let result= JSON.parse(info);
           return result;
           }else{
@@ -63,7 +63,7 @@ class Contenedor{
 
     getById = async(id)=>{
       try {
-        let elementos = await this.getAll()
+        let elementos = this.getAll
         const elemento = elementos.filter(elemento => elemento.id == id)
         if (elemento.length != 0){
           return elemento
